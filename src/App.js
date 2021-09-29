@@ -9,17 +9,28 @@ function App() {
   const [loadedPlayer, setLodedPlayer] = useState([])
   const [addPlayer, setAddPlayer] = useState([])
 
+  // remove player from selected area
+  const removePlayer = (player) => {
+    var array = [...addPlayer]; // make a separate copy of the array
+    var index = array.indexOf(player)
+    if (index !== -1) {
+      array.splice(index, 1);
+      setAddPlayer(array)
+    }
+  }
+
   useEffect(() => {
     setLodedPlayer(PlayerData)
   }, [])
 
+  // duplicate player added controller
   const handlePlayer = (player) => {
-    if(addPlayer.indexOf(player) !== -1){
+    if (addPlayer.indexOf(player) !== -1) {
       const newPlayer = [...addPlayer]
       setAddPlayer(newPlayer)
       alert('He is already added!!')
     }
-    else{
+    else {
       const newPlayer = [...addPlayer, player]
       setAddPlayer(newPlayer)
     }
@@ -29,7 +40,7 @@ function App() {
   return (
     <div>
 
-      <LoadedPlayer loadedPlayer={loadedPlayer}  addPlayer={addPlayer}></LoadedPlayer>
+      <LoadedPlayer loadedPlayer={loadedPlayer} removePlayer={removePlayer} addPlayer={addPlayer}></LoadedPlayer>
 
       <div className="row mt-5">
         {

@@ -4,6 +4,7 @@ import AddedPlayer from './AddedPlayer/AddedPlayer'
 const LoadedPlayer = (props) => {
     const loadedPlayer = props.loadedPlayer;
     const addPlayer = props.addPlayer;
+    const removePlayer = props.removePlayer
 
     let budget = addPlayer.reduce((sum, player)=> sum + Number(player.salary),0)
     budget = budget.toFixed(2)
@@ -16,7 +17,7 @@ const LoadedPlayer = (props) => {
             </div>
             <div className='row'>
                 {
-                    addPlayer.map(player => <AddedPlayer player={player}></AddedPlayer>)
+                    addPlayer.map(player => <AddedPlayer removePlayer={removePlayer} player={player}></AddedPlayer>)
                 }
             </div>
         </div>
